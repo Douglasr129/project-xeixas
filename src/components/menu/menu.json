@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_menu_menus",
+  "info": {
+    "displayName": "menu",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "logo_link": {
+      "type": "string",
+      "required": true,
+      "regex": "^[a-zA-Z]+([0-9-]*[a-zA-Z]+)*$",
+      "maxLength": 255,
+      "minLength": 3
+    },
+    "logo_text": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255,
+      "minLength": 3
+    },
+    "image": {
+      "type": "component",
+      "repeatable": false,
+      "component": "menu.image",
+      "required": true
+    },
+    "Links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "menu.link",
+      "required": true,
+      "min": 1
+    }
+  }
+}

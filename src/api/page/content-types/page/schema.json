@@ -4,7 +4,8 @@
   "info": {
     "singularName": "page",
     "pluralName": "pages",
-    "displayName": "Page"
+    "displayName": "Page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,6 +23,25 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "menu": {
+      "type": "component",
+      "repeatable": true,
+      "component": "menu.menu"
+    },
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "section.section-gallery",
+        "section.section-grid",
+        "section.section-simple",
+        "section.section-two-columns"
+      ]
+    },
+    "footer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "footer.footer"
     }
   }
 }
