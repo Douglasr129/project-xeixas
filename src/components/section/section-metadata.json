@@ -1,8 +1,9 @@
 {
   "collectionName": "components_section_section_metadata",
   "info": {
-    "displayName": "section_metadata",
-    "icon": "check"
+    "displayName": "metadata",
+    "icon": "check",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -20,12 +21,18 @@
       "maxLength": 50,
       "minLength": 3
     },
-    "section_image": {
+    "backgroundImd": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "IsDark": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }
