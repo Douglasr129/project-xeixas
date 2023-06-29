@@ -1,0 +1,137 @@
+# Write your query or mutation here
+fragment image on UploadFileEntityResponse {
+  data {
+    id
+    attributes {
+      name
+      alternativeText
+      url
+    }
+  }
+}
+fragment imageMenu on ComponentMenuImage {
+  id
+  name
+  description
+  image {
+    ...image
+  }
+}
+fragment link on ComponentMenuLink {
+  id
+  link_text
+  url
+  open_in_new_tab
+}
+fragment menu on ComponentMenuMenu {
+  id
+  logo_link
+  logo_text
+  image {
+    ...imageMenu
+  }
+  Links {
+    ...link
+  }
+}
+fragment imageGrid on ComponentSectionImageGrid {
+  id
+  name
+  description
+  image {
+    ...image
+  }
+}
+fragment metaData on ComponentSectionSectionMetadata {
+  id
+  name
+  section_id
+  backgroundImd {
+    ...image
+  }
+  IsDark
+}
+fragment sectionTextGrid on ComponentSectionTextGrid {
+  id
+  title
+  subtitles
+  description
+}
+fragment sectionGrid on ComponentSectionSectionGrid {
+  id
+  titleGrid: title
+  subtitleGrid: subtitle
+  descriptionGrid: description
+  textgrid {
+    ...sectionTextGrid
+  }
+  metadataGrid: metadata {
+    ...metaData
+  }
+}
+fragment sectionTwoColumns on ComponentSectionSectionTwoColumns {
+  id
+  titleTwoColumns: title
+  subtitleTwoColumns: subtitle
+  descriptionTwoColumns: description
+  text {
+    ...sectionTextGrid
+  }
+  image {
+    ...imageGrid
+  }
+  metadataTwoColumns: metadata {
+    ...metaData
+  }
+}
+fragment sectionGallery on ComponentSectionSectionGallery {
+  id
+  title
+  img {
+    ...imageGrid
+  }
+  metadata {
+    ...metaData
+  }
+}
+fragment sectionSimple on ComponentSectionSectionSimple {
+  id
+  content {
+    ...sectionTextGrid
+  }
+}
+fragment sections on PageSectionsDynamicZone {
+  __typename
+  ... on ComponentSectionSectionGrid {
+    ...sectionGrid
+  }
+  ... on ComponentSectionSectionTwoColumns {
+    ...sectionTwoColumns
+  }
+  ... on ComponentSectionSectionGallery {
+    ...sectionGallery
+  }
+  ... on ComponentSectionSectionSimple {
+    ...sectionSimple
+  }
+}
+query GET_ATTRIBUTES($slug: String!) {
+  pages(filters: {slug:{eq:$slug}}) {
+    data {
+      attributes {
+        title
+        slug
+        menu {
+          ...menu
+        }
+        sections {
+          ...sections
+        }
+        footer {
+          id
+          footer
+        }
+      }
+    }
+  }
+}
